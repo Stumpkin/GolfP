@@ -28,15 +28,15 @@ public class BallControl : MonoBehaviour
     {
         //lastPosition = transform.position;
         var speed = Vector3.Distance(lastPosition, transform.position);
-        
+        //Debug.Log(timer);
         if (isMoving)
         {
-            timer++;
-            if (timer >= 1800)
+            timer += 2;
+            if (timer >= 1200)
             {
                 timer = 0;
                 lastPosition = transform.position;
-                Debug.Log("Timer reset");
+                //Debug.Log("Timer reset");
             }
         }
        
@@ -48,14 +48,14 @@ public class BallControl : MonoBehaviour
             isMoving = false;
             lastPosition = transform.position;
             timer = 0;
-            Debug.Log("Ball should be stopped");
+            //Debug.Log("Ball should be stopped");
         }
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && !isMoving)
             //light hit is 20 - 100 / med hit is 110 - 1200 / hard hit is 1200 - 2500
             //if the user does not hit the button at the max it will hit the ball at 20;
         {
-            if (powerTimer == 0)
+            if (powerTimer <= 100)
             {
                 force = 20;
             }
@@ -66,18 +66,18 @@ public class BallControl : MonoBehaviour
             Vector3 direction = transform.position + Camera.main.transform.forward * force;
             dir = direction;
             rb.AddForce(direction);
-            Debug.Log("LOL");
+            //Debug.Log("LOL");
             isMoving = true;
         }
         
-        Debug.Log(powerTimer);
+        //Debug.Log(powerTimer);
         if (!isMoving)
         {
             if (powerTimer == 2600)
             {
                 powerTimer = 0;
             }
-            powerTimer += 10;
+            powerTimer += 2;
         }
     }
 
