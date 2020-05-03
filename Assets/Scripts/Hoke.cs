@@ -5,6 +5,8 @@ using UnityEngine;
 public class Hoke : MonoBehaviour
 {
     int timer = 0;
+    public AudioSource sound;
+    bool played = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +19,19 @@ public class Hoke : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Something hit me XI");
-    }
-
     void OnTriggerStay(Collider collider)
     {
-        Debug.Log("Something entered me OwO");
+        if (!played)
+        {
+            sound.Play();
+            played = true;
+        }
+
         if (timer > 500)
         {
             Destroy(collider.gameObject);
             timer = 0;
+            Application.Quit();
         }
         timer++;
 

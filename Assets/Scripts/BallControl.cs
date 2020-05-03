@@ -15,6 +15,7 @@ public class BallControl : MonoBehaviour
     Vector3 lastPosition;
     Vector3 beforeHit;
     Vector3 dir;
+    public AudioSource sound;
     
 
     // Start is called before the first frame update
@@ -59,6 +60,7 @@ public class BallControl : MonoBehaviour
             //if the user does not hit the button at the max it will hit the ball at 20;
         {
             beforeHit = transform.position;
+            sound.Play();
             if (powerTimer <= 100)
             {
                 force = 20;
