@@ -11,7 +11,9 @@ public class BallControl : MonoBehaviour
     public GameObject def;
     private int timer = 0;
     private int powerTimer = 0;
+    private int stokes = 0;
     Vector3 lastPosition;
+    Vector3 beforeHit;
     Vector3 dir;
     
 
@@ -20,6 +22,7 @@ public class BallControl : MonoBehaviour
     {
         isMoving = false;
         lastPosition = transform.position;
+        beforeHit = transform.position;
         force = 20;
     }
 
@@ -28,7 +31,7 @@ public class BallControl : MonoBehaviour
     {
         //lastPosition = transform.position;
         var speed = Vector3.Distance(lastPosition, transform.position);
-        //Debug.Log(timer);
+        Debug.Log(speed);
         if (isMoving)
         {
             timer += 2;
@@ -40,7 +43,7 @@ public class BallControl : MonoBehaviour
             }
         }
        
-        if (speed < 5 && timer == 600 && isMoving)
+        if (speed < 20 && timer == 600 && isMoving)
         {
             rb.velocity = new Vector3(0, 0, 0);
             rb.AddForce(Vector3.zero);
@@ -55,6 +58,7 @@ public class BallControl : MonoBehaviour
             //light hit is 20 - 100 / med hit is 110 - 1200 / hard hit is 1200 - 2500
             //if the user does not hit the button at the max it will hit the ball at 20;
         {
+            beforeHit = transform.position;
             if (powerTimer <= 100)
             {
                 force = 20;
@@ -66,7 +70,7 @@ public class BallControl : MonoBehaviour
             Vector3 direction = transform.position + Camera.main.transform.forward * force;
             dir = direction;
             rb.AddForce(direction);
-            //Debug.Log("LOL");
+            stokes++;
             isMoving = true;
         }
         
@@ -94,5 +98,17 @@ public class BallControl : MonoBehaviour
     public int getPowerTimer()
     {
         return powerTimer;
+    }
+
+    public int getStrokes()
+    {
+        return stokes;
+    }
+
+    public void Reset()
+    {
+        isMoving = false;
+        rb.isKinematic = true;
+        transform.position = beforeHit;
     }
 }

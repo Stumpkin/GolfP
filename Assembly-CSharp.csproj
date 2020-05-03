@@ -58,6 +58,8 @@
      <Compile Include="Assets\Scripts\BallControl.cs" />
      <Compile Include="Assets\Scripts\Cam2.cs" />
      <Compile Include="Assets\Scripts\Hoke.cs" />
+     <Compile Include="Assets\Scripts\Lava.cs" />
+     <Compile Include="Assets\Scripts\StokeUI.cs" />
      <Compile Include="Assets\Scripts\UI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

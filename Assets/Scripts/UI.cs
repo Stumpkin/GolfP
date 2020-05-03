@@ -19,5 +19,20 @@ public class UI : MonoBehaviour
     {
         timer = ball.getPowerTimer();
         powerText.text = timer.ToString();
+
+        if (timer < 1000 && timer > 0)
+        {
+            powerText.color = Color.green;
+        }
+
+        else if (timer >= 1000 && timer < 1700)
+        {
+            powerText.color = Color.yellow;
+        }
+
+        else
+        {
+            powerText.color = Color.red;
+        }
     }
 }
